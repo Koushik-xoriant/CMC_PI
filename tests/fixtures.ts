@@ -1,15 +1,9 @@
 import { test as base, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
 
 export const test = base.extend({});
 
 test.beforeEach(async ({ page }) => {
-  const { CMC_USERNAME: username, CMC_PASSWORD: password } = process.env;
-  if (!username || !password) {
-    throw new Error('Set CMC_USERNAME and CMC_PASSWORD before running tests.');
-  }
-
-  await new LoginPage(page).login(username, password);
+  await page.goto('/supplier_purchases');
 });
 
 test.afterEach(async ({ page }, testInfo) => {

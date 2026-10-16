@@ -34,13 +34,15 @@ Reports are saved under `playwright-report`; raw test evidence is saved under
 - Import `test` from `./fixtures` (or `../fixtures` from a nested test folder)
   so the test's screenshot is attached automatically. Import `expect` from
   `@playwright/test` if the test needs assertions.
-- Tests using this shared fixture are logged in before each test. Credentials
-  are read from `CMC_USERNAME` and `CMC_PASSWORD` in `.env`.
+- The Playwright setup project logs in once per test run and saves the
+  authenticated browser state for the tests. Credentials are read from
+  `CMC_USERNAME` and `CMC_PASSWORD` in `.env`.
 - Use `page.goto('/path')` for application pages; the application host is set
   as Playwright's `baseURL`.
 - Use unique test data for records created by a test; do not depend on records
   left behind by earlier runs.
 
-The invoice example generates a fresh invoice reference every run. It creates a
-real invoice in the configured Construction Manager environment; created
-invoices are not deleted.
+The invoice tests generate fresh invoice references every run and cover
+Never Post, Save and Post, and Save only. They create real invoices in the
+configured Construction Manager environment; posted invoices are submitted for
+posting, and created invoices are not deleted.

@@ -14,10 +14,14 @@ export class PurchaseInvoicePage {
   private readonly nominalCell: Locator;
   private readonly nominalOption: Locator;
   private readonly saveOrPostButton: Locator;
+  private readonly postButton: Locator;
+  private readonly saveOnlyButton: Locator;
   private readonly neverPostButton: Locator;
   private readonly saveConfirmation: Locator;
   private readonly invoiceRows: Locator;
   private readonly allowPostingButton: Locator;
+  private readonly editInvoiceButton: Locator;
+  private readonly postActionButton: Locator;
 
   constructor(private page: Page) {
     this.newInvoiceButton = page.getByRole('button', { name: /new invoice/i });
@@ -35,18 +39,22 @@ export class PurchaseInvoicePage {
     this.nominalCell = this.draftRow.getByRole('cell').nth(6);
     this.nominalOption = page.getByRole('option', { name: /M0064/ });
     this.saveOrPostButton = page.getByRole('button', { name: 'Save or Post' });
+    this.postButton = page.getByRole('button', { name: /^(Post|Save and Post)$/i });
+    this.saveOnlyButton = page.getByRole('button', { name: /^Save only$/i });
     this.neverPostButton = page.getByRole('button', { name: 'Never Post', exact: true });
     this.saveConfirmation = page.getByText('Changes saved successfully.');
     this.invoiceRows = page.getByRole('row');
     this.allowPostingButton = page.getByRole('button', { name: 'Allow Posting' });
+    this.editInvoiceButton = page.getByRole('button', { name: 'Edit Invoice', exact: true });
+    this.postActionButton = page.getByRole('button', { name: 'Post', exact: true });
   }
 
   async clickNewInvoice() {
     await this.newInvoiceButton.click();
   }
 
-  async createInvoice(): Promise<string> {
-    const invoiceRef = `NP-${Date.now()}`;
+  async createInvoice(referencePrefix = 'NP'): Promise<string> {
+    const invoiceRef = `${referencePrefix}-${Date.now()}`;
 
     await this.invoiceReferenceInput.fill(invoiceRef);
     await this.supplierInput.click();
@@ -54,7 +62,7 @@ export class PurchaseInvoicePage {
     await this.supplierOption.click();
 
     await this.detailsCell.click();
-    await this.detailsInput.fill('Playwright Never Post test');
+    await this.detailsInput.fill('Playwright purchase invoice test');
     await this.quantityInput.fill('1');
     await this.unitPriceInput.fill('10.00');
 
@@ -71,12 +79,51 @@ export class PurchaseInvoicePage {
     await expect(this.saveConfirmation).toBeVisible();
   }
 
+  async postInvoice() {
+    await this.saveOrPostButton.click();
+    await this.postButton.click();
+  }
+
+  async saveInvoiceOnly() {
+    await this.saveOrPostButton.click();
+    await this.saveOnlyButton.click();
+    await expect(this.saveConfirmation).toBeVisible();
+  }
+
   async verifyAllowPostingCTA(invoiceRef: string) {
-    const invoiceRow = this.invoiceRows.filter({
-      has: this.page.getByRole('cell', { name: invoiceRef, exact: true }),
-    });
+    const invoiceRow = this.getInvoiceRow(invoiceRef);
 
     await invoiceRow.getByRole('button', { name: 'Never Post' }).click();
     await expect(this.allowPostingButton).toBeVisible();
+  }
+
+  async verifySavedRtpActions(invoiceRef: string) {
+    const invoiceRow = this.getInvoiceRow(invoiceRef);
+    const savedRtpStatus = invoiceRow.getByRole('button', { name: 'Saved-RTP', exact: true });
+
+    await expect(savedRtpStatus).toBeVisible();
+    await savedRtpStatus.click();
+    await expect(this.postActionButton).toBeVisible();
+    await expect(this.editInvoiceButton).toBeVisible();
+    await expect(this.neverPostButton.last()).toBeVisible();
+  }
+
+  async verifyProcessingThenPosted(invoiceRef: string) {
+    const invoiceRow = this.getInvoiceRow(invoiceRef);
+
+    await expect(invoiceRow.getByText(/^(Processing|Posted)$/)).toBeVisible({
+      timeout: 10_000,
+    });
+    await expect(invoiceRow.getByText('Posted', { exact: true })).toBeVisible({
+      timeout: 15_000,
+    });
+    await invoiceRow.getByText('Posted', { exact: true }).click();
+    await expect(this.editInvoiceButton).toBeVisible();
+  }
+
+  private getInvoiceRow(invoiceRef: string): Locator {
+    return this.invoiceRows.filter({
+      has: this.page.getByRole('cell', { name: invoiceRef, exact: true }),
+    });
   }
 }

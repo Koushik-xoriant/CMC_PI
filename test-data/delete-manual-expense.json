@@ -1,0 +1,13 @@
+{
+  "testCaseId": "CMC-35279",
+  "requirementId": "CMC-34295",
+  "requirementTitle": "Delete an expense (or mileage expense) desktop",
+  "testCaseTitle": "Delete manual expense",
+  "testCaseSummary": "Creates a manual expense with a receipt, opens it, checks the delete confirmation and that Cancel keeps the expense, then deletes it and verifies it is no longer an unclaimed expense.",
+  "module": "expenses",
+  "feature": "Manual expenses",
+  "impactAreas": ["expenses", "manual-expenses"],
+  "descriptionPrefix": "CMC35279",
+  "netAmount": "10.00",
+  "defaultVatCode": "T1"
+}

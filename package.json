@@ -1,21 +1,26 @@
 {
-  "name": "eque2",
+  "name": "cmc-ui-automation",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Playwright and TypeScript UI automation framework",
   "scripts": {
-    "test": "playwright test",
-    "test:smoke": "playwright test --grep @smoke",
-    "test:never-post": "playwright test tests/neverPostInvoice.spec.ts",
-    "report": "playwright show-report"
+    "test": "npm run test:prepare && node scripts/run-tests.cjs",
+    "test:prepare": "node -e \"require('node:fs').rmSync('allure-results', { recursive: true, force: true })\"",
+    "failure:triage": "node scripts/triage-failures.cjs",
+    "history:report": "node scripts/generate-execution-history.cjs",
+    "rtm": "node scripts/generate-rtm.cjs",
+    "report": "node scripts/prepare-report.cjs && allure generate allure-results --clean -o allure-report",
+    "report:open": "allure open allure-report",
+    "typecheck": "tsc --noEmit",
+    "report:archive": "node scripts/archive-report.cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.63.0",
-    "@types/node": "^26.6.4"
+    "@types/node": "^26.6.4",
+    "allure-commandline": "^2.34.1",
+    "allure-js-commons": "^3.14.0",
+    "allure-playwright": "^3.4.2",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "dotenv": "^18.0.7"

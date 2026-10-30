@@ -1,0 +1,20 @@
+{
+  "testCaseId": "CMC-34880",
+  "requirementId": "CMC-34651",
+  "requirementTitle": "Calculate VAT and NET values for Mileage expense",
+  "testCaseTitle": "New Mileage expense-> Add file from Pending tray",
+  "testCaseSummary": "Creates a company-car mileage expense for a fixed route, attaches the shared sample PDF from the pending tray, saves it, and checks the list entry and that the receipt is retained. VAT on mileage is covered by a separate expected-failure test while CMC-36433 is open.",
+  "module": "expenses",
+  "feature": "Mileage expenses",
+  "impactAreas": ["expenses", "mileage-expenses", "receipts", "pending-tray"],
+  "descriptionPrefix": "CMC34880",
+  "routeFrom": "SW1A 1AA",
+  "routeTo": "EC1A 1BB",
+  "vehicleOwnership": "Company car",
+  "standardVatRate": 20,
+  "pendingTrayReceipt": "Sample PDF for pending tray.pdf",
+  "routeMapDefect": "CMC-35222",
+  "routeMapDefectTitle": "Expenses - map is not shown when viewing unclaimed expense",
+  "vatDefect": "CMC-36433",
+  "vatDefectTitle": "VAT is being calculated on Mileage @20% inclusive; VAT is only claimable on the fuel part"
+}

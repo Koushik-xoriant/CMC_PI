@@ -1,0 +1,19 @@
+{
+  "testCaseId": "CMC-35053",
+  "requirementId": "CMC-33737",
+  "requirementTitle": "Smart capture fields from upload",
+  "testCaseTitle": "New Expense-> Smart capture from computer",
+  "testCaseSummary": "Uploads the sample invoice as an image and as a PDF through smart capture, and compares captured fields with the values printed on that invoice.",
+  "module": "expenses",
+  "feature": "Smart capture",
+  "impactAreas": ["expenses", "smart-capture", "receipts"],
+  "receiptFixtures": [
+    { "format": "image", "file": "receipts/sample-image.jpg" },
+    { "format": "PDF", "file": "receipts/sample.pdf" }
+  ],
+  "expectedVendor": "Complete Test 1 Ltd",
+  "expectedDate": "12/09/2025",
+  "expectedGrossAmount": "124.68",
+  "expectedNetAmount": "103.90",
+  "expectedTaxCodePattern": "Standard rated"
+}

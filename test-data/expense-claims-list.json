@@ -1,0 +1,16 @@
+{
+  "testCaseId": "CMC-34060",
+  "requirementId": "CMC-33712",
+  "requirementTitle": "View claims list",
+  "testCaseTitle": "Expenses Claims-> List (My claims)",
+  "testCaseSummary": "Creates a claim from two of its own manual expenses, then verifies the Expense claims list columns and the claim's date range, description, number of expenses with icon, gross and View action. The Draft status is covered by a separate expected-failure test while alpha has no approval route for expense claims.",
+  "module": "expenses",
+  "feature": "Expense claims",
+  "impactAreas": ["expenses", "expense-claims"],
+  "descriptionPrefix": "CMC34060",
+  "netAmount": "10.00",
+  "defaultVatCode": "T1",
+  "expectedStatus": "Draft",
+  "statusDefect": "Alpha setup: no expense claim approval route",
+  "statusDefectTitle": "A newly saved expense claim shows status Error instead of Draft because no approval route is configured for expense claims"
+}

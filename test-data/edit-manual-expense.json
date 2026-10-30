@@ -1,0 +1,23 @@
+{
+  "testCaseId": "CMC-35276",
+  "requirementId": "CMC-33745",
+  "requirementTitle": "Save expense",
+  "testCaseTitle": "Edit Manual Expense",
+  "testCaseSummary": "Creates a manual expense with a receipt, edits its description and changes Gross to a random amount, checks Net is recalculated from the VAT rate, then verifies the list and the reopened expense show the edited values.",
+  "module": "expenses",
+  "feature": "Manual expenses",
+  "impactAreas": [
+    "expenses",
+    "manual-expenses"
+  ],
+  "descriptionPrefix": "CMC35276",
+  "netAmount": "10.00",
+  "defaultVatCode": "T1",
+  "editedGrossMinimum": "50.00",
+  "editedGrossMaximum": "500.00",
+  "knownDefect": "CMC-35911",
+  "halfPennyVatCode": "T5",
+  "halfPennyGross": "313.65",
+  "grossRoundingDefect": "Not yet raised",
+  "grossRoundingDefectTitle": "Saving recalculates Gross from Net and rounds a half-penny VAT amount down, changing the Gross the user typed (313.65 at T5 saved as 313.64)"
+}

@@ -1,9 +1,14 @@
-
-# Playwright
 node_modules/
 .env
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+playwright/.auth/
+allure-results/
+allure-report/
+rtm-report.html
+quality-metrics/
+playwright-report/
+test-results/
+execution-history.jsonl
+execution-history.html
+automation-history.jsonl
+*.log
+report-archive/

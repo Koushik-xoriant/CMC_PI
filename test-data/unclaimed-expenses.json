@@ -1,0 +1,14 @@
+{
+  "testCaseId": "CMC-34050",
+  "requirementId": "CMC-34050",
+  "requirementTitle": "Unclaimed Expenses list displays the correct expense details and totals",
+  "testCaseTitle": "Unclaimed Expenses List verification",
+  "testCaseSummary": "Opens the Unclaimed Expenses list, creates manual expenses with and without receipts, and verifies the listed fields, icons, dates, and footer totals.",
+  "module": "expenses",
+
+  "feature": "Unclaimed expenses list",
+  "impactAreas": ["expenses", "unclaimed-expenses"],
+  "descriptionPrefix": "CMC34050",
+  "netAmount": "10.00",
+  "defaultVatCode": "T1"
+}

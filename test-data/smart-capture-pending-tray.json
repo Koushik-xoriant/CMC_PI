@@ -1,0 +1,16 @@
+{
+  "testCaseId": "CMC-34711",
+  "requirementId": "CMC-34037",
+  "requirementTitle": "Smart capture fields from pending tray",
+  "testCaseTitle": "New Expense-> Smart capture from Pending Tray",
+  "testCaseSummary": "Selects the shared sample image already in the pending tray through smart capture, and compares captured fields with the values printed on that invoice.",
+  "module": "expenses",
+  "feature": "Smart capture",
+  "impactAreas": ["expenses", "smart-capture", "pending-tray"],
+  "pendingTrayReceipt": "Sample image for pending tray.jpg",
+  "expectedVendor": "Complete Test 1 Ltd",
+  "expectedDate": "12/09/2025",
+  "expectedGrossAmount": "124.68",
+  "expectedNetAmount": "103.90",
+  "expectedTaxCodePattern": "Standard rated"
+}

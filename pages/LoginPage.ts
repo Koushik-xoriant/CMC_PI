@@ -1,28 +1,33 @@
-import { Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 
 export class LoginPage {
   private readonly emailInput: Locator;
   private readonly passwordInput: Locator;
   private readonly loginButton: Locator;
-  private readonly rejectCookiesButton: Locator;
+  private readonly acceptCookiesButton: Locator;
 
-  constructor(private page: Page) {
+  constructor(private readonly page: Page) {
     this.emailInput = page.getByPlaceholder('you@example.com');
     this.passwordInput = page.getByPlaceholder('Password');
-    this.loginButton = page.getByRole('button', { name: 'Log In', exact: true });
-    this.rejectCookiesButton = page.getByRole('button', {
-      name: 'Reject analytics cookies',
+    this.loginButton = page.getByRole('button', { name: /^log in$/i });
+    this.acceptCookiesButton = page.getByRole('button', {
+      name: /accept analytics cookies/i,
     });
   }
 
-  async login(username: string, password: string) {
-    await this.page.goto('/supplier_purchases');
+  async login(username: string, password: string): Promise<void> {
+    await this.page.goto('/auth/login?redirectUrl=%2Fwelcome', {
+      waitUntil: 'domcontentloaded',
+    });
     await this.emailInput.fill(username);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
+    await this.page.waitForURL((url) => !url.pathname.includes('/auth/login'));
 
-    if (await this.rejectCookiesButton.isVisible()) {
-      await this.rejectCookiesButton.click();
+    if (await this.acceptCookiesButton.isVisible()) {
+      await this.acceptCookiesButton.click();
     }
+
+    await expect(this.page).not.toHaveURL(/\/auth\/login/);
   }
 }

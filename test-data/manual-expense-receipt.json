@@ -1,0 +1,18 @@
+{
+  "testCaseId": "CMC-34052",
+  "requirementId": "CMC-34052",
+  "requirementTitle": "Save a manual expense with a receipt uploaded from a file",
+  "testCaseTitle": "Verify manual expense receipts can be uploaded and retained",
+  "testCaseSummary": "Creates manual expenses using computer upload and drag-and-drop with PDF and image receipts, and attaches a pending-tray receipt; verifies each saved list entry, then reopens each draft and checks its values.",
+  "module": "expenses",
+  "feature": "Manual expenses",
+  "impactAreas": [
+    "expenses",
+    "manual-expenses",
+    "receipts"
+  ],
+  "descriptionPrefix": "CMC34052",
+  "netAmount": "10.00",
+  "defaultVatCode": "T1",
+  "pendingTrayReceipt": "Sample PDF for pending tray.pdf"
+}

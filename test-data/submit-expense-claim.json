@@ -1,0 +1,16 @@
+{
+  "testCaseId": "CMC-34714",
+  "requirementId": "CMC-33912",
+  "requirementTitle": "Submit a claim for approval",
+  "testCaseTitle": "Expense Claim-> Submit claim for approval",
+  "testCaseSummary": "Creates and saves a claim from one of its own manual expenses, reopens it, submits it for approval and verifies the Expense claims list shows it as Pending approval. Expected to fail while alpha has no approval route for expense claims.",
+  "module": "expenses",
+  "feature": "Expense claims",
+  "impactAreas": ["expenses", "expense-claims", "approvals"],
+  "descriptionPrefix": "CMC34714",
+  "netAmount": "10.00",
+  "defaultVatCode": "T1",
+  "expectedStatus": "Pending approval",
+  "environmentIssue": "Alpha setup: no expense claim approval route",
+  "environmentIssueTitle": "Submitting a claim is refused because no approval route is configured for expense claims"
+}

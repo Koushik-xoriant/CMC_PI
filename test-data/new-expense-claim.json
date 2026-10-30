@@ -1,0 +1,17 @@
+{
+  "testCaseId": "CMC-34738",
+  "requirementId": "CMC-33716",
+  "requirementTitle": "Add expenses to a claim",
+  "testCaseTitle": "Expenses-> New Expense claim",
+  "testCaseSummary": "Creates a manual expense and a mileage expense, each with a receipt, opens a new expense claim, adds both expenses, saves the claim, and verifies the claim totals, the claims list entry, the reopened claim, and that the expenses are no longer unclaimed.",
+  "module": "expenses",
+  "feature": "Expense claims",
+  "impactAreas": ["expenses", "expense-claims", "manual-expenses", "mileage-expenses"],
+  "descriptionPrefix": "CMC34738",
+  "netAmount": "10.00",
+  "defaultVatCode": "T1",
+  "routeFrom": "SW1A 1AA",
+  "routeTo": "EC1A 1BB",
+  "vehicleOwnership": "Company car",
+  "pendingTrayReceipt": "Sample PDF for pending tray.pdf"
+}

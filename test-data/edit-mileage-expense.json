@@ -1,0 +1,15 @@
+{
+  "testCaseId": "CMC-35277",
+  "requirementId": "CMC-33745",
+  "requirementTitle": "Save expense",
+  "testCaseTitle": "Edit Mileage Expense",
+  "testCaseSummary": "Creates a one-way company-car mileage expense, reopens it, edits the description, switches on Return trip and changes the contract, then verifies Return trip doubles the miles and amount, the list shows the edited expense, and the reopened expense shows every edited value.",
+  "module": "expenses",
+  "feature": "Mileage expenses",
+  "impactAreas": ["expenses", "mileage-expenses"],
+  "descriptionPrefix": "CMC35277",
+  "routeFrom": "SW1A 1AA",
+  "routeTo": "EC1A 1BB",
+  "vehicleOwnership": "Company car",
+  "knownDefect": "CMC-35222"
+}

@@ -1,5 +1,5 @@
 {
-  "name": "cmc-ui-automation",
+  "name": "CMC_UI_Automation",
   "version": "1.0.0",
   "private": true,
   "description": "Playwright and TypeScript UI automation framework",
